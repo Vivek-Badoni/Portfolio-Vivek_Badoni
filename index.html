@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vivek Badoni — Portfolio</title>
+  <meta name="description" content="Personal portfolio of Vivek Badoni, BSc IT student at Uttaranchal University. Showcasing web development projects, skills in Python, Java, React & Flask, and internship experience.">
+  <meta name="keywords" content="Vivek Badoni, portfolio, web developer, BSc IT, Uttaranchal University, Python developer, React developer">
+  <meta name="author" content="Vivek Badoni">
+  <meta property="og:title" content="Vivek Badoni — Portfolio">
+  <meta property="og:description" content="BSc IT student and web developer showcasing projects, skills, and internship experience.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FAF8FF;
+      --ink: #211A36;
+      --ink-soft: #6B6483;
+      --card: #FFFFFF;
+      --violet: #7C3AED;
+      --pink: #F472B6;
+      --orange: #FB923C;
+      --yellow: #FACC15;
+      --teal: #22D3EE;
+      --blue: #3B82F6;
+      --grad-a: linear-gradient(135deg, var(--violet), var(--pink));
+      --grad-b: linear-gradient(135deg, var(--orange), var(--yellow));
+      --grad-c: linear-gradient(135deg, var(--teal), var(--blue));
+      --radius: 20px;
+      --shadow: 0 10px 30px rgba(124, 58, 237, 0.12), 0 2px 8px rgba(33, 26, 54, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    ::selection {
+      background: var(--violet);
+      color: #fff;
+    }
+
+    h1,
+    h2,
+    h3,
+    .display {
+      font-family: 'Baloo 2', sans-serif;
+    }
+
+    .mono {
+      font-family: 'Space Mono', monospace;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* floating blobs */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: .35;
+      z-index: 0;
+      animation: float 14s ease-in-out infinite;
+    }
+
+    .blob1 {
+      width: 420px;
+      height: 420px;
+      background: var(--grad-a);
+      top: -120px;
+      left: -140px;
+    }
+
+    .blob2 {
+      width: 380px;
+      height: 380px;
+      background: var(--grad-c);
+      top: 40%;
+      right: -160px;
+      animation-delay: -5s;
+    }
+
+    .blob3 {
+      width: 320px;
+      height: 320px;
+      background: var(--grad-b);
+      bottom: -140px;
+      left: 20%;
+      animation-delay: -9s;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0) translateX(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-30px) translateX(20px) scale(1.06);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .blob {
+        animation: none;
+      }
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    /* topbar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(250, 248, 255, 0.85);
+      backdrop-filter: blur(10px);
+    }
+
+    .topbar .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .9rem 1.5rem;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.15rem;
+    }
+
+    .brand .lvl {
+      font-family: 'Space Mono', monospace;
+      font-size: .7rem;
+      background: var(--grad-a);
+      color: #fff;
+      padding: .2rem .55rem;
+      border-radius: 20px;
+      margin-left: .5rem;
+      vertical-align: middle;
+    }
+
+    .tabs {
+      display: flex;
+      gap: .3rem;
+    }
+
+    .tab {
+      font-weight: 600;
+      font-size: .85rem;
+      padding: .5rem 1rem;
+      border-radius: 20px;
+      text-decoration: none;
+      color: var(--ink-soft);
+      transition: all .2s ease;
+    }
+
+    .tab:hover {
+      background: var(--card);
+      color: var(--violet);
+      box-shadow: var(--shadow);
+    }
+
+    @media (max-width:640px) {
+      .tabs {
+        display: none;
+      }
+    }
+
+    /* hero / player card */
+    .hero {
+      padding-top: 4rem;
+    }
+
+    .player-card {
+      background: var(--card);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 2.4rem;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .player-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 3px;
+      border-radius: 28px;
+      background: var(--grad-a);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: var(--grad-a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Baloo 2', sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(124, 58, 237, 0.35);
+    }
+
+    .player-info {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .player-info .tagline {
+      font-family: 'Space Mono', monospace;
+      font-size: .75rem;
+      color: var(--violet);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .player-info h1 {
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      margin: .3rem 0 .4rem;
+      font-weight: 800;
+    }
+
+    .player-info p {
+      color: var(--ink-soft);
+      font-size: 1.02rem;
+      max-width: 46ch;
+      margin: 0;
+    }
+
+    .xp-wrap {
+      width: 100%;
+      margin-top: 2rem;
+    }
+
+    .xp-label {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Space Mono', monospace;
+      font-size: .75rem;
+      color: var(--ink-soft);
+      margin-bottom: .4rem;
+    }
+
+    .xp-track {
+      height: 14px;
+      background: #EFEAFB;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .xp-fill {
+      height: 100%;
+      border-radius: 20px;
+      background: var(--grad-a);
+      width: 0%;
+      transition: width 1.4s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .xp-track.in-view .xp-fill {
+      width: 88%;
+    }
+
+    .badges-row {
+      display: flex;
+      gap: .6rem;
+      margin-top: 1.4rem;
+      flex-wrap: wrap;
+    }
+
+    .mini-badge {
+      font-size: .78rem;
+      font-weight: 600;
+      padding: .4rem .8rem;
+      border-radius: 20px;
+      color: #fff;
+    }
+
+    .mini-badge.b1 {
+      background: var(--grad-a);
+    }
+
+    .mini-badge.b2 {
+      background: var(--grad-b);
+      color: var(--ink);
+    }
+
+    .mini-badge.b3 {
+      background: var(--grad-c);
+    }
+
+    /* section headers */
+    .sec-head {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      margin-bottom: 2.4rem;
+    }
+
+    .sec-head .icon-chip {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .sec-head h2 {
+      font-size: 1.8rem;
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .sec-head .sub {
+      font-family: 'Space Mono', monospace;
+      font-size: .75rem;
+      color: var(--ink-soft);
+      display: block;
+      margin-top: .1rem;
+    }
+
+    /* about / bio */
+    .bio-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 2.2rem;
+      font-size: 1.05rem;
+      line-height: 1.85;
+    }
+
+    .bio-card p+p {
+      margin-top: 1rem;
+    }
+
+    .bio-card .highlight {
+      background: linear-gradient(180deg, transparent 65%, #FDE68A 65%);
+      font-weight: 600;
+    }
+
+    /* achievements / skills */
+    .badge-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+
+    @media (max-width:700px) {
+      .badge-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width:460px) {
+      .badge-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .achievement {
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 1.4rem 1.2rem;
+      text-align: center;
+      transition: transform .25s ease;
+    }
+
+    .achievement:hover {
+      transform: translateY(-6px) rotate(-1deg);
+    }
+
+    .ach-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      margin: 0 auto .8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: #fff;
+    }
+
+    .achievement h3 {
+      font-size: 1rem;
+      margin: 0 0 .3rem;
+    }
+
+    .achievement .lvl-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: .7rem;
+      color: var(--ink-soft);
+    }
+
+    .achievement .track {
+      height: 8px;
+      background: #EFEAFB;
+      border-radius: 10px;
+      margin-top: .7rem;
+      overflow: hidden;
+    }
+
+    .achievement .fill {
+      height: 100%;
+      border-radius: 10px;
+      width: 0%;
+      transition: width 1.2s ease;
+    }
+
+    /* quests / projects */
+    .quest-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .quest {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.6rem 1.8rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1.4rem;
+      align-items: center;
+    }
+
+    @media (max-width:700px) {
+      .quest {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .quest .diff {
+      font-family: 'Space Mono', monospace;
+      font-size: .7rem;
+      font-weight: 700;
+      color: #fff;
+      padding: .4rem .7rem;
+      border-radius: 10px;
+      text-align: center;
+      white-space: nowrap;
+      height: fit-content;
+    }
+
+    .diff.easy {
+      background: var(--grad-c);
+    }
+
+    .diff.med {
+      background: var(--grad-b);
+      color: var(--ink);
+    }
+
+    .diff.hard {
+      background: var(--grad-a);
+    }
+
+    .diff.ongoing {
+      background: var(--ink);
+    }
+
+    .quest h3 {
+      font-size: 1.2rem;
+      margin: 0 0 .35rem;
+    }
+
+    .quest p {
+      color: var(--ink-soft);
+      font-size: .94rem;
+      line-height: 1.6;
+      margin: 0 0 .7rem;
+    }
+
+    .quest .stack {
+      display: flex;
+      gap: .4rem;
+      flex-wrap: wrap;
+      margin-bottom: .6rem;
+    }
+
+    .quest .stack span {
+      font-family: 'Space Mono', monospace;
+      font-size: .68rem;
+      background: #F3EFFF;
+      color: var(--violet);
+      padding: .2rem .55rem;
+      border-radius: 8px;
+    }
+
+    .quest .links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .quest .links a {
+      font-family: 'Space Mono', monospace;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--violet);
+      text-decoration: none;
+      border-bottom: 2px solid var(--violet);
+      padding-bottom: 1px;
+    }
+
+    .quest .reward {
+      font-family: 'Space Mono', monospace;
+      font-size: .75rem;
+      color: var(--ink-soft);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .quest .reward b {
+      display: block;
+      color: var(--ink);
+      font-size: .95rem;
+    }
+
+    /* recruit / contact */
+    .recruit {
+      background: var(--grad-a);
+      border-radius: 28px;
+      padding: 2.6rem;
+      color: #fff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .recruit h2 {
+      font-size: 2rem;
+      margin: 0 0 .6rem;
+    }
+
+    .recruit p {
+      opacity: .92;
+      max-width: 44ch;
+      margin: 0 auto 1.6rem;
+    }
+
+    .recruit-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .recruit-btns a {
+      background: #fff;
+      color: var(--violet);
+      font-weight: 700;
+      text-decoration: none;
+      padding: .8rem 1.5rem;
+      border-radius: 14px;
+      font-size: .92rem;
+      transition: transform .2s ease;
+      display: inline-block;
+    }
+
+    .recruit-btns a:hover {
+      transform: translateY(-3px);
+    }
+
+    .recruit-btns a.ghost {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      border: 1.5px solid rgba(255, 255, 255, 0.5);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0 3rem;
+      font-family: 'Space Mono', monospace;
+      font-size: .72rem;
+      color: var(--ink-soft);
+      position: relative;
+      z-index: 1;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--violet);
+      outline-offset: 2px;
+    }
+
+    /* certifications */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+
+    @media (max-width:700px) {
+      .cert-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cert-card {
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 1.4rem 1.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      transition: transform .25s ease;
+    }
+
+    .cert-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .cert-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: #fff;
+    }
+
+    .cert-card h3 {
+      font-size: 1rem;
+      margin: .2rem 0 0;
+    }
+
+    .cert-card .issuer {
+      font-family: 'Space Mono', monospace;
+      font-size: .75rem;
+      color: var(--ink-soft);
+    }
+
+    .cert-card a {
+      font-family: 'Space Mono', monospace;
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--violet);
+      text-decoration: none;
+      border-bottom: 2px solid var(--violet);
+      width: fit-content;
+      margin-top: .2rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+
+  <div class="topbar">
+    <div class="wrap">
+      <div class="brand">Vivek Badoni <span class="lvl">LVL 20</span></div>
+      <nav class="tabs">
+        <a class="tab" href="#bio">Bio</a>
+        <a class="tab" href="#achievements">Achievements</a>
+        <a class="tab" href="#quests">Quests</a>
+        <a class="tab" href="#certs">Certs</a>
+        <a class="tab" href="#recruit">Recruit Me</a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="player-card reveal">
+        <div class="avatar">VB</div>
+        <div class="player-info">
+          <span class="tagline">Player Class: BSc IT Student, Uttaranchal University</span>
+          <h1>Vivek Badoni</h1>
+          <p>Building web apps, automating things with Python, and currently training as a Web Developer intern. Looking
+            for a full-time guild to join after graduation.</p>
+        </div>
+        <div class="xp-wrap">
+          <div class="xp-label"><span>XP to Full-Time Ready</span><span>780 / 1000</span></div>
+          <div class="xp-track">
+            <div class="xp-fill"></div>
+          </div>
+        </div>
+        <div class="badges-row">
+          <span class="mini-badge b1">🏆 2× Internship Certified</span>
+          <span class="mini-badge b2">⚡ 5 Projects Shipped</span>
+          <span class="mini-badge b3">🎓 BSc IT · 2023–2026</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="bio">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="icon-chip" style="background:var(--grad-a);">📜</div>
+        <div>
+          <h2>Character Bio</h2><span class="sub">about me</span>
+        </div>
+      </div>
+      <div class="bio-card reveal">
+        <p>I'm a B.Sc. Information Technology student at Uttaranchal University, Dehradun, with a solid grip on web
+          development, Java, Python, and database management. I like turning ideas into working web apps and I'm always
+          looking for the next thing to build and break.</p>
+        <p>I've completed two internships in Python programming and full-stack web development with Flask, and I'm <span
+            class="highlight">currently training as a Web Developer intern at Tulyarth Pvt. Ltd.</span> — sharpening my
+          skills on real projects every day. Looking for an entry-level role where I can contribute and keep growing.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="achievements">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="icon-chip" style="background:var(--grad-b);">🎖️</div>
+        <div>
+          <h2>Achievements Unlocked</h2><span class="sub">skills</span>
+        </div>
+      </div>
+      <div class="badge-grid">
+        <div class="achievement reveal">
+          <div class="ach-icon" style="background:var(--grad-a);">🌐</div>
+          <h3>HTML, CSS &amp; JS</h3>
+          <span class="lvl-tag">LVL 9 · Frontend</span>
+          <div class="track">
+            <div class="fill" data-w="90%" style="background:var(--grad-a);"></div>
+          </div>
+        </div>
+        <div class="achievement reveal">
+          <div class="ach-icon" style="background:var(--grad-c);">🐍</div>
+          <h3>Python &amp; Flask</h3>
+          <span class="lvl-tag">LVL 9 · Backend</span>
+          <div class="track">
+            <div class="fill" data-w="88%" style="background:var(--grad-c);"></div>
+          </div>
+        </div>
+        <div class="achievement reveal">
+          <div class="ach-icon" style="background:var(--grad-b);">☕</div>
+          <h3>Java &amp; C++</h3>
+          <span class="lvl-tag">LVL 8 · Core languages</span>
+          <div class="track">
+            <div class="fill" data-w="80%" style="background:var(--grad-b);"></div>
+          </div>
+        </div>
+        <div class="achievement reveal">
+          <div class="ach-icon" style="background:var(--grad-c);">🗄️</div>
+          <h3>SQL &amp; Databases</h3>
+          <span class="lvl-tag">LVL 7 · SQLite &amp; MS SQL</span>
+          <div class="track">
+            <div class="fill" data-w="78%" style="background:var(--grad-c);"></div>
+          </div>
+        </div>
+        <div class="achievement reveal">
+          <div class="ach-icon" style="background:var(--grad-a);">⚛️</div>
+          <h3>React &amp; Bootstrap</h3>
+          <span class="lvl-tag">LVL 7 · UI Building</span>
+          <div class="track">
+            <div class="fill" data-w="75%" style="background:var(--grad-a);"></div>
+          </div>
+        </div>
+        <div class="achievement reveal">
+          <div class="ach-icon" style="background:var(--grad-b);">🔧</div>
+          <h3>Git &amp; Tools</h3>
+          <span class="lvl-tag">LVL 6 · VSCode, IntelliJ</span>
+          <div class="track">
+            <div class="fill" data-w="70%" style="background:var(--grad-b);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quests">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="icon-chip" style="background:var(--grad-c);">🗺️</div>
+        <div>
+          <h2>Quest Log</h2><span class="sub">projects / work</span>
+        </div>
+      </div>
+      <div class="quest-list">
+
+        <div class="quest reveal">
+          <span class="diff ongoing">ONGOING</span>
+          <div>
+            <h3>Web Developer Intern — Tulyarth Pvt. Ltd.</h3>
+            <p>Currently training as a Web Developer intern, building real-world web features and sharpening my
+              full-stack skills on the job.</p>
+            <div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>React</span></div>
+          </div>
+          <div class="reward">Status<b>In Progress</b></div>
+        </div>
+
+        <div class="quest reveal">
+          <span class="diff hard">HARD</span>
+          <div>
+            <h3>AI-Powered Resume Analyzer &amp; ATS Scoring System</h3>
+            <p>A Flask-based web app for resume analysis, ATS scoring, skill-gap detection, an analytics dashboard, and
+              PDF report generation.</p>
+            <div class="stack"><span>Python</span><span>Flask</span><span>SQLite</span><span>Chart.js</span></div>
+            <div class="links"><a href="https://github.com/Vivek-Badoni/AI-Resume-Analyzer">GitHub</a>
+            <div class="links"><a href="https://ai-resume-analyzer-tguj.onrender.com/">Live Demo</a></div> </div>
+          </div>
+          <div class="reward">XP Reward<b>+400</b></div>
+        </div>
+
+        <div class="quest reveal">
+          <span class="diff med">MEDIUM</span>
+          <div>
+            <h3>Local Food Finder</h3>
+            <p>A dynamic web platform to help users discover local restaurants and dishes near them.</p>
+            <div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>PHP</span></div>
+            <div class="links"><a href="#">GitHub</a></div>
+          </div>
+          <div class="reward">XP Reward<b>+250</b></div>
+        </div>
+
+        <div class="quest reveal">
+          <span class="diff med">MEDIUM</span>
+          <div>
+            <h3>Speech Recognition System</h3>
+            <p>A Python-based speech-to-text application built using speech recognition techniques.</p>
+            <div class="stack"><span>Python</span><span>Speech Recognition</span></div>
+            <div class="links"><a href="https://github.com/Vivek-Badoni/-VOICE-DESKTOP-ASSISTANT-">GitHub</a></div>
+          </div>
+          <div class="reward">XP Reward<b>+220</b></div>
+        </div>
+
+        <div class="quest reveal">
+          <span class="diff easy">EASY</span>
+          <div>
+            <h3>Text Speeder Game</h3>
+            <p>A C++ typing game built to help users improve their typing speed and accuracy.</p>
+            <div class="stack"><span>C++</span></div>
+            <div class="links"><a href="#">GitHub</a></div>
+          </div>
+          <div class="reward">XP Reward<b>+120</b></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="certs">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="icon-chip" style="background:var(--grad-b);">📛</div>
+        <div>
+          <h2>Certifications Earned</h2><span class="sub">badges of honor</span>
+        </div>
+      </div>
+      <div class="cert-grid">
+        <div class="cert-card reveal">
+          <div class="cert-badge" style="background:var(--grad-a);">☁️</div>
+          <h3>AWS Cloud Computing</h3>
+          <span class="issuer">Coplur Workshop</span>
+          <a href="https://coplur.com/" target="_blank" rel="noopener">Verify →</a>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-badge" style="background:var(--grad-c);">🤖</div>
+          <h3>ChatGPT for Everyone</h3>
+          <span class="issuer">GUVI</span>
+          <a href="https://www.guvi.in/" target="_blank" rel="noopener">Verify →</a>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-badge" style="background:var(--grad-b);">📄</div>
+          <h3>Roadmap for Patent Writing</h3>
+          <span class="issuer">NPTEL</span>
+          <a href="https://onlinecourses.nptel.ac.in/" target="_blank" rel="noopener">Verify →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="recruit">
+    <div class="wrap">
+      <div class="recruit reveal">
+        <h2>Recruit Me to Your Guild</h2>
+        <p>Open to full-time roles and internships. I reply fast — usually within a day.</p>
+        <div class="recruit-btns">
+          <a href="mailto:badonivivek2006@gmail.com">✉️ Email Me</a>
+          <a class="ghost" href="tel:+-----">📞 Call Me</a>
+          <a class="ghost" href="https://github.com/Vivek-Badoni" target="_blank" rel="noopener">GitHub</a>
+          <a class="ghost" href="https://linkedin.com/in/Vivek-Badoni" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Made with care · Class of 2026</footer>
+
+  <script>
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          if (e.target.classList.contains('player-card')) {
+            const track = e.target.querySelector('.xp-track');
+            if (track) track.classList.add('in-view');
+          }
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => io.observe(el));
+
+    const barIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const fill = e.target.querySelector('.fill');
+          if (fill) fill.style.width = fill.dataset.w;
+          barIO.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.achievement').forEach(el => barIO.observe(el));
+  </script>
+
+</body>
+
+</html>
